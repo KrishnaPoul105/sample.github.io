@@ -1,0 +1,168 @@
+<html><head>
+        <title>Coding is life</title>
+    </head>
+    <body>
+        <header>
+            <style>
+                header
+                {
+                    text-align: center;
+                    color: blue;
+                }
+            </style>
+            <h1><b><u>Infinite Coding</u></b></h1>
+        </header>
+        
+        <hr>
+            <h1>
+                Problem Statement: Write a Program for Tower of Hanoi.
+            </h1>
+            <hr>
+        <section>
+            <h1> Method to Solve:</h1>
+            <article>
+                Tower of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:
+ <ol>Only one disk can be moved at a time.</ol>
+ <ol>Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack i.e. a disk can only be moved if it is the uppermost disk on a stack.</ol>
+ <ol>No disk may be placed on top of a smaller disk</ol>
+                <br>
+                <aside>
+                Take an example for 2 disks :<br>
+Let rod 1 = 'A', rod 2 = 'B', rod 3 = 'C'.<br>
+
+Step 1 : Shift first disk from 'A' to 'B'.<br>
+Step 2 : Shift second disk from 'A' to 'C'.<br>
+Step 3 : Shift first disk from 'B' to 'C'.<br>
+
+The pattern here is :<br>
+Shift 'n-1' disks from 'A' to 'B'.<br>
+Shift last disk from 'A' to 'C'.<br>
+Shift 'n-1' disks from 'B' to 'C'.<br>
+
+Image illustration for 3 disks :
+                 <img src="tower-of-hanoi.png" alt="ERROR"> 
+                
+            </aside>
+            </article>
+            
+        </section>
+        <hr>
+        <pre>            <h2>Code:</h2>
+            <code>
+                // Java recursive program to solve tower of hanoi puzzle 
+  
+class GFG 
+{ 
+    // Java recursive function to solve tower of hanoi puzzle 
+    static void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod) 
+    { 
+        if (n == 1) 
+        { 
+            System.out.println("Move disk 1 from rod " +  from_rod + " to rod " + to_rod); 
+            return; 
+        } 
+        towerOfHanoi(n-1, from_rod, aux_rod, to_rod); 
+        System.out.println("Move disk " + n + " from rod " +  from_rod + " to rod " + to_rod); 
+        towerOfHanoi(n-1, aux_rod, to_rod, from_rod); 
+    } 
+      
+    //  Driver method 
+    public static void main(String args[]) 
+    { 
+        int n = 4; // Number of disks 
+        towerOfHanoi(n, 'A', 'C', 'B');  // A, B and C are names of rods 
+    } 
+} 
+            </code>
+        </pre>
+        <hr>
+        
+        <section>
+            <h2>variables:</h2>
+            <samp>
+                 <var>A</var>- First Rod      <br>
+                 <var>B</var>- Second Rod  <br>
+                 <var>C</var>-  Third Rod    <br>
+                 <var>n</var>- Number of         disks   <br>
+                                  
+            </samp>
+        </section>
+        <hr>
+        <section>
+            <h2>Input:</h2>
+            <samp>
+                
+                Here input is by default in the program i.e. 4 
+            </samp>
+        </section>
+        <hr>
+        <section>
+            <h2>Output:</h2>
+            <samp>
+                 Move disk 1 from rod A to rod B<br>
+ Move disk 2 from rod A to rod C<br>
+ Move disk 1 from rod B to rod C<br>
+ Move disk 3 from rod A to rod B<br>
+ Move disk 1 from rod C to rod A<br>
+ Move disk 2 from rod C to rod B<br>
+ Move disk 1 from rod A to rod B<br>
+ Move disk 4 from rod A to rod C<br>
+ Move disk 1 from rod B to rod C<br>
+ Move disk 2 from rod B to rod A<br>
+ Move disk 1 from rod C to rod A<br>
+ Move disk 3 from rod B to rod C<br>
+ Move disk 1 from rod A to rod B<br>
+ Move disk 2 from rod A to rod C<br>
+ Move disk 1 from rod B to rod C<br>
+            </samp>
+            select and press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy the results.
+        </section>
+        <hr>
+        <pre>        <section>
+            <h2>Complexity:</h2>
+   Analysis of Recursion
+
+Recursive Equation : T(n) = 2T(n-1) + 1 ——-equation-1
+
+Solving it by BackSubstitution :
+T(n-1) = 2T(n-2) + 1 ———–equation-2
+T(n-2) = 2T(n-3) + 1 ———–equation-3
+
+
+
+
+Put value of T(n-2) in equation–2 with help of equation-3
+T(n-1)= 2( 2T(n-3) + 1 ) + 1 ——equation-4
+
+Put value of T(n-1) in equation-1 with help of equation-4
+T(n)= 2( 2( 2T(n-3) + 1 ) + 1 ) + 1 
+T(n) = 2^3 T(n-3) + 2^2 + + 2^1 + 1 
+
+After Generalization :
+T(n)=  2^k T(n-k) + 2^{(k-1)} + + 2^{(k-2)} + ............ +2^2 + + 2^1 + 1
+
+Base condition T(0) == 1
+n – k = 0
+n = k;
+put, k = n
+T(n) = 2^n T(0) + 2^{(n-1)} + + 2^{(n-2)} + ............ +2^2 + + 2^1 + 1
+
+It is GP series, and sum is 2^{(n+1)} - 1
+
+T(n)= O( 2^{(n+1)} - 1), or you can say O(2^n) which is exponentioal
+      <s>Complexity is : O(2^n)</s>
+        </section>
+        </pre>
+        <hr>
+        <footer>
+            <h3>Reference for Tower of hanoi:
+            <a href="https://www.geeksforgeeks.org/c-program-for-tower-of-hanoi/">geeksforgeeks</a>
+            </h3>  
+            
+            contact us:
+            <br>
+            <small> email : krishnapoul43@gmail.com</small>
+            <br>
+        </footer>
+    
+</body></html>
